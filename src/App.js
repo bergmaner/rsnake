@@ -24,6 +24,10 @@ class App extends Component {
     setInterval(this.moveSnake,this.state.speed);
     document.onkeydown = this.onKeyDown;
   }
+  componentDidUpdate()
+  {
+    this.checkSnakeIsOutOfBorders();
+  }
   onKeyDown = (e) =>
   {
     e = e || window.event;
@@ -67,7 +71,17 @@ class App extends Component {
     squares.shift();// remove first element
     this.setState({snakeSquares : squares});//update state
   }
-
+  checkSnakeIsOutOfBorders()
+  {
+    let head = this.state.snakeSquares[this.state.snakeSquares.length-1];
+    if(head[0]<0 || head[0]>=96 || head[1]<0 || head[1]>=96)//check is it out of order
+    this.gameOver();
+  }
+  gameOver()
+  {
+    alert(`Game Over.Snake length : ${this.state.snakeSquares.length}`);
+    this.setState(initialState);
+  }
  
   render(){
   return (
