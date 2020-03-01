@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Snake from './Components/Snake';
+import Food from './Components/Food';
 
-function App() {
+const initialState = 
+{
+  speed:300,
+  food : [4,4] , 
+  direction:'RIGHT' ,
+  snakeSquares :
+  [
+    [0,0],
+    [4,0],
+    [8,0],
+    [12,0]
+  ]
+}
+class App extends Component {
+ 
+  state = initialState;
+ 
+ 
+
+ 
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className='arena'>
+     <Snake snakeSquares={this.state.snakeSquares}/>
+     <Food dot={this.state.food}/>
+    </div>
     </div>
   );
+  }
 }
 
 export default App;
